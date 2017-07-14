@@ -1,0 +1,4 @@
+
+
+.droppable { background: #08c; color: #fff; padding: 100px 0; text-align: center; };
+.droppable.dragover { background: #00CC71; };

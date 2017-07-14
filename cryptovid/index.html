@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8"/>
+		<title>JavaScript File Encryption App</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<script src="js/jquery.js"></script>
+        <script src="js/dragDrop.js"></script>
+		<script src="js/encrypt.js"></script>
+		<script src="js/aes.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+	</head>
+
+	<body>
+
+
+			<div id="upload">
+				<div class="content if-encrypt">
+
+					<!-- <a class="button browse blue">Browse</a>
+					<input type="file" id="encrypt-input" /> -->
+					
+					<div class="content">
+					<div id="drop-files" ondragover="return false;" ondrop="return false;">
+					<div id="expiration-time" class="noselect">This video will expire <span id="text-select" class="noselect">in 8 hours.</span></div>
+					<div id="upload-mark">
+					<center>
+					<img id="loadbar" src="images/loadbar.gif" style="top: 0vh; position: fixed; transform: translateX(-50%); visibility: hidden;">
+					<div id="drop-text" class="noselect"> Drop a vid </div>
+					
+								<div id="link">
+								<div class="content if-encrypt">
+									Sharable link
+								<input id="keyCode" size="20" type="text" />
+								</div>
+								
+								<div class="content">
+			                	<a href="http://udrugadignitas.hr/cryptovid" class="button">Upload more</a>
+			                	</div>
+								
+								</div>
+								
+					            <div id="motto">
+					            Secure local encryption file sharing.
+					            <div>
+					
+					</div>
+					
+	
+
+	                        
+					
+					</div>
+					
+					
+					</div>
+					</div>
+			</div>
+	
+	<!--
+	<div id="uploaded-holder">
+		<div id="dropped-files">
+			<div id="upload-button">
+				<a href="#" class="upload">Upload!</a>
+			</div>
+		</div>
+
+	</div> -->
+	
+	<div id="loading">
+		<div id="loading-bar">
+			<div class="loading-color"> </div>
+		</div>
+		<div id="loading-content">Uploading file.jpg</div>
+	</div>
+					
+					
+				</div>
+
+			</div>
+			
+
+
+
+	</body>
+	
+
+
+	
+
+</html>
