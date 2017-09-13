@@ -72,7 +72,6 @@ $(function(){
 	}
 
 	function processVideo(){
-	    alert("processing");
 	
 	//load bar
 	
@@ -141,10 +140,7 @@ $(function(){
 	}
 
 function passtoserver(data){
-    
-    alert("Filled passed to upload script.");
-    alert(data);
-    alert(extensionName);
+
 
     var file_data = data;
     var form_data = new FormData();                  // Creating object of FormData class
