@@ -3,12 +3,6 @@ var Enlarged = 0;
 
 $(function(){
 
-	var body = $('body'),
-		stage = $('#stage'),
-		back = $('a.back');
-		
-		
-
 
 
 
