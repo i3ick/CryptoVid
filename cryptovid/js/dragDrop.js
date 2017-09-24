@@ -23,7 +23,7 @@ $(document).ready(function() {
 		var files = e.dataTransfer.files;
 		
 		// Show the upload holder
-		//$('#uploaded-holder').show();
+		$('#uploaded-holder').show();
 		
 		// For each file
 		$.each(files, function(index, file) {
@@ -64,7 +64,6 @@ $(document).ready(function() {
 			if($('#dropped-files > .image').length < maxFiles) {
 				// Change position of the upload button so it is centered
 				var imageWidths = ((220 + (40 * $('#dropped-files > .image').length)) / 2) - 20;
-				$('#upload-button').css({'left' : imageWidths+'px', 'display' : 'block'});
 			}
 			
 			
@@ -88,77 +87,26 @@ $(document).ready(function() {
 						videoName = file.name;
 						Vfile = file;
 						SliceData = this.result.slice(0, 1000 + 1); //slice the file, encrypt the first part (speed up encryption process)
-						
-						
-						processVideo();
-						
-						
-						// Just some grammatical adjustments
-						if(dataArray.length == 1) {
-							$('#upload-button span').html("1 file to be uploaded");
-						} else {
-							$('#upload-button span').html(dataArray.length+" files to be uploaded");
-						}
-						// Place extra files in a list
-						if($('#dropped-files > .image').length < maxFiles) { 
-							// Place the image inside the dropzone
-							$('#dropped-files').append('<div class="image" style="left: '+z+'px; background: url('+image+'); background-size: cover;"> </div>'); 
-						}
-						else {
-							
-							$('#extra-files .number').html('+'+($('#file-list li').length + 1));
-							// Show the extra files dialogue
-							$('#extra-files').show();
-							
-							// Start adding the file name to the file list
-							$('#extra-files #file-list ul').append('<li>'+file.name+'</li>');
-							
-						}
+
+
+						encrypt();
+
 					}; 
 					
 				})(files[index]);
-				
-				
 
 				
 			// For data URI purposes
 			fileReader.readAsDataURL(file);
-			
-			
+
 	
 		});
-		
-		
-
 	});
 	
 	
 	
-	
-	
-	function restartFiles() {
-	
-		// This is to set the loading bar back to its default state
-		$('#loading-bar .loading-color').css({'width' : '0%'});
-		$('#loading').css({'display' : 'none'});
-		$('#loading-content').html(' ');
-		// --------------------------------------------------------
-		
-		// We need to remove all the images and li elements as
-		// appropriate. We'll also make the upload button disappear
-		
-		$('#upload-button').hide();
-		$('#dropped-files > .image').remove();
-		$('#extra-files #file-list li').remove();
-		$('#extra-files').hide();
-		$('#uploaded-holder').hide();
-	
-		// And finally, empty the array/set z to -40
-		dataArray.length = 0;
-		z = -40;
-		
-		return false;
-	}
+
+/**
 	
 	$('#upload-button .upload').click(function() {
 		
@@ -217,8 +165,9 @@ $(document).ready(function() {
 		});
 		
 		return false;
-	});
-	
+	});  **/
+
+
 	// Just some styling for the drop file container.
 	$('#drop-files').bind('dragenter', function() {
 		document.getElementById("upload-mark").style.border = "4px dashed rgb(167, 171, 97)";
@@ -242,8 +191,7 @@ $(document).ready(function() {
 	}, function() {
 		$('#file-list').hide();
 	});
-	
-	$('#dropped-files #upload-button .delete').click(restartFiles);
+
 	
 	// Append the localstorage the the uploaded files section
 	if(window.localStorage.length > 0) {
