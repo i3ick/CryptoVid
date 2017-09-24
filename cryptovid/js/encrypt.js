@@ -136,10 +136,6 @@ function passtoserver(data){
     request.send(form_data);
     request.status;
 
-    $('.demo').ajaxupload({
-        url:'upload.php',
-        remotePath:'example1/'
-    });
 
 }
 
