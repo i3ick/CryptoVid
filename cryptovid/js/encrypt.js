@@ -71,13 +71,13 @@ $(function(){
 	return salty;
 	}
 
-	function processVideo(){
-	
+	function encrypt(){
+
 	//load bar
-	
+
 	document.getElementById("loadbar").style.visibility = 'visible';
-	
-	
+
+
 	var Ftype;
 	if(FileType == 'video'){
 	Ftype = 'video';
@@ -85,48 +85,33 @@ $(function(){
 	else{Ftype = 'image';}
 	var parseLink = window.location.href + '/fileview.php?link=' + videoName + '.encrypted&key=' + key + '&type=' + Ftype;
 
-	
-
-		var input = $(this).parent().find('input[type=password]'),
-			a = $(' a.download'),
-			password = input.val();
-		
-		
-		
-
-		// The HTML5 FileReader object will allow us to read the 
-		// contents of the	selected file.
 
 		var reader = new FileReader();
-		
-
 			// Encrypt the file!
-
 			reader.onload = function ed(e){
 
 				// Use the CryptoJS library and the AES cypher to encrypt the 
 				// contents of the file, held in e.target.result, with the password
 
 				var encrypted = CryptoJS.AES.encrypt(videoData, key);
+                if(videoData === null){
+                    alert("filedata is null. error encountered, please try again.");
+                }
 
-				// The download attribute will cause the contents of the href
-				// attribute to be downloaded when clicked. The download attribute
-				// also holds the name of the file that is offered for download.
+                if(videoData == null){
+                    alert("filedata is null. error encountered, please try again2.");
+                }
 
-				a.attr('href', 'data:application/octet-stream,' + encrypted);
-				a.attr('download', videoName + '.encrypted');
-				
-				//var input = document.getElementById('keyCode').value;
-				//input.focus();
-				//input.select();
-				
+                alert(videoData);
+                alert(encrypted);
 				extensionName = videoName + '.encrypted';
 				passtoserver(encrypted);
 				//uploadChunk(encrypted);
 
-        document.getElementById("loadbar").style.visibility = 'hidden';
-	document.getElementById('keyCode').value = parseLink;
-	document.getElementById('keyCode').setAttribute('size', parseLink.length + 3);
+                //Show the link
+                document.getElementById("loadbar").style.visibility = 'hidden';
+	            document.getElementById('keyCode').value = parseLink;
+	            document.getElementById('keyCode').setAttribute('size', parseLink.length + 3);
 				
 
 			};
@@ -139,23 +124,23 @@ $(function(){
 
 	}
 
+
 function passtoserver(data){
 
-
-    var file_data = data;
     var form_data = new FormData();                  // Creating object of FormData class
 	form_data.append('filename', extensionName);
 	form_data.append('filedata', data);
 
-    $.ajax({
-                url: "upload_file.php",
-                dataType: 'script',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,                         // Setting the data attribute of ajax with file_data
-                type: 'post'
-       });
+    var request = new XMLHttpRequest();
+    request.open("POST", "http://udrugadignitas.hr/cryptovid/upload_file.php");
+    request.send(form_data);
+    request.status;
+
+    $('.demo').ajaxupload({
+        url:'upload.php',
+        remotePath:'example1/'
+    });
+
 }
 
 
